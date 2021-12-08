@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<f:metadata>
+    <f:viewAction action="#{communicationTest7Bean.init}"/>
+</f:metadata>
+
+<h:body>
+<!--    that 2 properties make the object keep alive in that view (and bean), independently of-->
+<!--    how much refreshs the user do-->
+    <h:inputHidden value="#{flash.keep}"/>
+    <h:inputHidden value="#{flash.student}"/>
+    <o:form includeRequestParams="true">
+        <p:messages autoUpdate="true"/>
+        <h:panelGrid columns="1">
+            <h:outputText value="#{communicationTest7Bean.student.name}"/>
+            <h:outputText value="#{communicationTest7Bean.student.surname}"/>
+            <h:outputText value="#{communicationTest7Bean.student.grade1}"/>
+        </h:panelGrid>
+    </o:form>
+</h:body>
+
+</html>

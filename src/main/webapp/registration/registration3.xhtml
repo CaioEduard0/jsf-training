@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 20/11/2021
+  Time: 15:58
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h2>Third page of Flow Scoped</h2>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Name"/>
+            <h:outputLabel value="#{testFlowBean.name}"/>
+            <h:outputLabel value="Surname"/>
+            <h:outputLabel value="#{testFlowBean.surname}"/>
+            <h:outputLabel value="Address"/>
+            <h:outputLabel value="#{testFlowBean.address}"/>
+            <h:commandButton value="Next" action="registration2?faces-redirect=true"/>
+            <h:commandButton value="Save" action="exitToIndex"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+
+</html>

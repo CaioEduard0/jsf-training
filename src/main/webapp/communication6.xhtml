@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<h:body>
+    <o:form includeRequestParams="true">
+        <p:messages autoUpdate="true"/>
+        <h:panelGrid columns="1">
+            <ui:repeat value="#{communicationTest6Bean.students}" var="student" varStatus="status">
+                <h:outputText value="#{status.index}"/>&nbsp;
+                <h:outputText value="#{student.name}"/>&nbsp;
+                <h:outputText value="#{student.surname}"/>&nbsp;
+                <h:outputText value="#{student.grade1}"/>&nbsp;
+<!--                executing this function, we are sent that object to the other view using FlashScope-->
+                <p:commandLink value="Update" action="#{communicationTest6Bean.update(status.index)}"/>
+                <br/>
+            </ui:repeat>
+
+        </h:panelGrid>
+    </o:form>
+</h:body>
+
+</html>

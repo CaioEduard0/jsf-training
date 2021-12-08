@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 06/12/2021
+  Time: 19:59
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>JSF-Training</title>
+</h:head>
+
+<h:body>
+    <p:messages autoUpdate="true" id="messages"/>
+    <h:outputText value="Is a ajax request? #{facesContext.postback}" id="postback"/>
+    <h:form id="form">
+        <h:panelGrid columns="1">
+            <h:inputText value="#{ajaxTestBean.name}" id="name" required="true">
+                <f:ajax event="keyup" listener="#{ajaxTestBean.toUpperCaseName}" render="nameOut"
+                delay="1000"/>
+<!--                the delay parameter make the requests make by ajax be ignored in the period of time-->
+<!--                informed, just the last request will be considered-->
+            </h:inputText>
+            <h:outputText id="nameOut" value="#{ajaxTestBean.name}"/>
+            <h:commandButton value="Send"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+
+</html>

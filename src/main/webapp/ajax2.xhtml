@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 06/12/2021
+  Time: 19:59
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>JSF-Training</title>
+</h:head>
+
+<h:body>
+    <p:messages autoUpdate="true" id="messages"/>
+    <h:outputText value="Is a ajax request? #{facesContext.postback}" id="postback"/>
+    <f:event type="preRenderView" listener="#{ajaxTestBean.init}"/>
+<!--    <f:metadata>-->
+<!--        <f:viewAction action="#{ajaxTestBean.init}" onPostBack="true"/> -->
+<!--    </f:metadata>-->
+    <h:form id="form">
+        <h:panelGrid columns="1">
+            <f:ajax event="blur" render="messages">
+                <h:inputText value="#{ajaxTestBean.email}" id="email" required="true"
+                             validator="#{validators.validateDuplicatedEmail}"/>
+                <h:inputText value="#{ajaxTestBean.name}" id="name" required="true"/>
+            </f:ajax>
+            <h:commandButton value="Send"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+
+</html>

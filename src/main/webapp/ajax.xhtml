@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 06/12/2021
+  Time: 19:59
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>JSF-Training</title>
+</h:head>
+
+<h:body>
+    <h:outputText value="#{ajaxTestBean.surname}" id="outside"/>
+    <h:form id="form">
+        <h:panelGrid columns="1">
+<!--            @form execute or render the entire form (all fields)-->
+<!--            @this render or execute just the button they are based-->
+<!--            @none don't do nothing (useful when you want execute something, but don't need that be render-->
+<!--            @all render or execute the entire page (all fields / components)-->
+            <h:inputText value="#{ajaxTestBean.name}" id="name"/>
+            <h:inputText value="#{ajaxTestBean.surname}" id="surname"/>
+<!--            the listener attribute make the same function of actionListener in the buttons-->
+            <h:commandButton value="Send">
+<!--                <f:ajax execute="name surname" render="nameOut surnameOut"/>-->
+                <f:ajax execute="@form" render="@form form2-nameOut2 outside" listener="#{ajaxTestBean.toUpperCase}"/>
+            </h:commandButton>
+            <h:outputText value="#{ajaxTestBean.name}" id="nameOut"/>
+            <h:outputText value="#{ajaxTestBean.surname}" id="surnameOut"/>
+            <h:inputText value="#{ajaxTestBean.name}">
+<!--                each time the event is executed a request is make to the server-->
+                <f:ajax event="blur" listener="#{ajaxTestBean.toUpperCaseName}" render="@this nameOut"/>
+            </h:inputText>
+            <h:selectOneMenu value="#{ajaxTestBean.selectedAnime}">
+                <f:selectItem value="#{null}" itemLabel="Select a anime"/>
+                <f:selectItems value="#{ajaxTestBean.animeCharacters.keySet()}"
+                               var="anime"
+                               itemLabel="#{anime}"
+                               itemValue="#{anime}"/>
+                <f:ajax listener="#{ajaxTestBean.onSelectAnime}" render="character"/>
+            </h:selectOneMenu>
+            <h:selectOneMenu value="#{ajaxTestBean.selectedCharacter}" id="character">
+                <f:selectItem value="#{null}" itemLabel="Select a character"/>
+                <f:selectItems value="#{ajaxTestBean.characters}"
+                               var="character"
+                               itemLabel="#{character}"
+                               itemValue="#{character}"/>
+            </h:selectOneMenu>
+        </h:panelGrid>
+    </h:form>
+    <h:form id="form2">
+        <h:outputText value="#{ajaxTestBean.name}" id="nameOut2"/>
+        <h:outputText value="#{ajaxTestBean.surname}" id="surnameOut2"/>
+    </h:form>
+</h:body>
+
+</html>

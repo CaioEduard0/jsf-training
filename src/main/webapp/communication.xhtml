@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:of="http://omnifaces.org/functions">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:panelGrid columns="1">
+            <h:outputText value="#{facesContext.externalContext.getInitParameter('images.location')}"/>
+            <h:commandButton value="Print" actionListener="#{communicationTest1Bean.printAttributes}"/>
+        </h:panelGrid>
+    </h:form>
+    <h:form>
+        <h:panelGrid columns="1">
+            <h:inputText value="#{communicationTest1Bean.name}"/>
+            <h:inputText value="#{communicationTest1Bean.surname}"/>
+            <!--            when I utilize the commandButton the parameters go within body, because that is a post method-->
+            <h:commandButton value="Save" action="communication2">
+                <f:param name="name" value="DevDojo"/>
+                <f:param name="surname" value="Ninjas"/>
+            </h:commandButton>
+<!--            and that manner I sent the parameters in the URL, because is a get method-->
+            <h:button value="Save" outcome="communication2?faces-redirect=true">
+                <f:param name="name" value="DevDojo"/>
+                <f:param name="surname" value="Ninjas"/>
+            </h:button>
+            <!--            and that manner I sent the parameters in the URL, because is a get method-->
+            <h:link value="Go to communication 2" outcome="communication2">
+                <f:param name="name" value="DevDojo"/>
+                <f:param name="surname" value="Ninjas"/>
+            </h:link>
+            <h:link value="Go to communication 3" outcome="communication3">
+                <f:param name="name" value="DevDojo"/>
+                <f:param name="surname" value="Ninjas"/>
+<!--                <f:param name="date" value="#{communicationTest1Bean.formattedDate}"/>-->
+<!--                here we are using a omnifaces function, that format the date automatically in the view-->
+                <f:param name="date" value="#{of:formatDate(communicationTest1Bean.date, 'dd/MM/yyyy')}"/>
+            </h:link>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+
+</html>

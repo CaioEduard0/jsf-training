@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 19/11/2021
+  Time: 22:18
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Jsf-training</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:panelGrid columns="1">
+            <p:messages autoUpdate="true"/>
+            <h:outputLabel value="E-mail"/>
+            <h:inputText value="#{loginBean.email}" required="true" requiredMessage="Fill in the e-mail"/>
+            <h:outputLabel value="Password"/>
+            <h:inputSecret value="#{loginBean.password}" required="true" requiredMessage="Fill in the password"/>
+            <h:selectOneMenu value="#{loginBean.language}">
+                <f:selectItems value="#{loginBean.locales}"
+                               var="locale"
+                               itemValue="#{locale.language}"
+                               itemLabel="#{locale.displayLanguage}"/>
+            </h:selectOneMenu>
+            <h:commandButton value="Login" action="#{loginBean.login}"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+
+</html>

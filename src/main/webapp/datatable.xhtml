@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<f:metadata>
+    <f:viewAction action="#{dataTableTestBean.init}"/>
+</f:metadata>
+
+<h:body>
+    <p:importEnum type="br.com.example.jsftraining.model.enums.Shift"
+                  var="Shift"
+                  allSuffix="ALL_ENUM_VALUES"/>
+
+    <p:messages autoUpdate="true"/>
+    <h:form>
+        <h:dataTable value="#{dataTableTestBean.students}" var="student">
+            <h:column>
+                <f:facet name="header">
+                    <h:commandLink actionListener="#{dataTableTestBean.orderByName('asc')}">
+                        Name asc
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{dataTableTestBean.orderByName('desc')}">
+                        Name desc
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{student.name}" rendered="#{not student.editing}"/>
+                <h:inputText value="#{student.name}" rendered="#{student.editing}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:commandLink actionListener="#{dataTableTestBean.orderBySurname('asc')}">
+                        Surname asc
+                    </h:commandLink>
+                    <h:commandLink actionListener="#{dataTableTestBean.orderBySurname('desc')}">
+                        Surname desc
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{student.surname}" rendered="#{not student.editing}"/>
+                <h:inputText value="#{student.surname}" rendered="#{student.editing}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Shift</f:facet>
+                <h:outputText value="#{student.shift}" rendered="#{not student.editing}"/>
+                <h:selectOneMenu value="#{student.shift}" rendered="#{student.editing}">
+                    <f:selectItems value="#{Shift.ALL_ENUM_VALUES}"
+                                   var="shift"
+                                   itemValue="#{shift}"
+                                   itemLabel="#{shift}"/>
+                </h:selectOneMenu>
+            </h:column>
+            <h:column>
+                <f:facet name="header">E-mail</f:facet>
+                <h:outputText value="#{student.email}" rendered="#{not student.editing}"/>
+                <h:inputText value="#{student.email}" rendered="#{student.editing}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"></f:facet>
+                <h:commandLink actionListener="#{dataTableTestBean.delete(student)}"
+                rendered="#{not student.editing}">
+                    <h:outputText value="Delete"/>
+                </h:commandLink>
+            </h:column>
+            <h:column>
+                <f:facet name="header"></f:facet>
+                <h:commandLink actionListener="#{dataTableTestBean.update(student)}"
+                               rendered="#{not student.editing}">
+                    <h:outputText value="Update"/>
+                </h:commandLink>
+            </h:column>
+        </h:dataTable>
+        <h:commandButton value="Save" actionListener="#{dataTableTestBean.save}"/>
+
+        <h:dataTable value="#{dataTableTestBean.studentsSet}" var="student">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{student.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Surname</f:facet>
+                <h:outputText value="#{student.surname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Shift</f:facet>
+                <h:outputText value="#{student.shift}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">E-mail</f:facet>
+                <h:outputText value="#{student.email}"/>
+            </h:column>
+        </h:dataTable>
+
+        <h:dataTable value="#{dataTableTestBean.studentsLinkedList}" var="student">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{student.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Surname</f:facet>
+                <h:outputText value="#{student.surname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Shift</f:facet>
+                <h:outputText value="#{student.shift}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">E-mail</f:facet>
+                <h:outputText value="#{student.email}"/>
+            </h:column>
+        </h:dataTable>
+
+        <h:dataTable value="#{dataTableTestBean.studentsMap.values()}" var="student">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{student.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Surname</f:facet>
+                <h:outputText value="#{student.surname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Shift</f:facet>
+                <h:outputText value="#{student.shift}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">E-mail</f:facet>
+                <h:outputText value="#{student.email}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+
+</html>

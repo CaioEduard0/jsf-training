@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<f:metadata>
+    <f:viewAction action="#{communicationTest12Bean.init}"/>
+</f:metadata>
+
+<h:body>
+    <p:messages autoUpdate="true"/>
+    <h:outputText value="#{communicationTest12Bean.student.name}"/>
+    <br/>
+    <h:outputText value="#{communicationTest12Bean.student.surname}"/>
+    <h:form>
+        <h:inputText value="#{communicationTest12Bean.student2.name}" converter="javax.faces.Number"
+        immediate="true"/>
+        <h:inputText value="#{communicationTest12Bean.student2.surname}" converter="javax.faces.BigDecimal"/>
+        <h:commandButton value="Back" action="#{communicationTest12Bean.back}" immediate="true"/>
+    </h:form>
+</h:body>
+
+</html>

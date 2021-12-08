@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                                  http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <flow-definition id="pendencies">
+<!--        that will redirect user to the page if the data are correct-->
+        <flow-return id="proceedToRegistration3">
+            <from-outcome>/registration/registration3</from-outcome>
+        </flow-return>
+        <flow-return id="exitToInit">
+            <from-outcome>registrationInit</from-outcome>
+        </flow-return>
+<!--        here I am receiving the parameters sent of the other flow scoped-->
+        <inbound-parameter>
+            <name>username</name>
+            <value>#{testNestedFlowBean.username}</value>
+        </inbound-parameter>
+        <inbound-parameter>
+            <name>userSurname</name>
+            <value>#{testNestedFlowBean.userSurname}</value>
+        </inbound-parameter>
+    </flow-definition>
+</faces-config>

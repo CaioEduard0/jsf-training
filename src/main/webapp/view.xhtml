@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 19/11/2021
+  Time: 22:18
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Jsf-training</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:outputText value="#{testApplicationBean.categories}"/>
+        <h:outputText value="#{testApplicationBean.testDependentBean.categories}"/>
+        <h:outputText value="#{testViewBean.selectedCharacter}"/>
+        <h:outputText value="#{testViewBean.testDependentBean.selectedCharacter}"/>
+        <br/>
+        <h:outputText value="Logged Student: #{testViewBean.testSessionBean.student.name}"/>
+        <br/>
+        <h:commandButton actionListener="#{testViewBean.selectCharacter}" value="Select Character"/>
+        <h:commandButton actionListener="#{testViewBean.selectCharacter}"
+                         value="Select Character Forward" action="view2"/>
+        <h:commandButton actionListener="#{testViewBean.selectCharacter}"
+                         value="Select Character Redirect" action="view2?faces-redirect=true"/>
+    </h:form>
+</h:body>
+
+</html>

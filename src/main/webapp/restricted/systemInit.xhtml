@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 15:54
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<!--that define the language of the application-->
+<f:view locale="#{loginBean.language}">
+    <h:outputText value="#{loginBean.language}"/>
+    <h:body>
+        <h:form>
+            <h1>#{msg.userLogged} #{loginBean.student.name}</h1>
+            <br/>
+<!--            setting values as parameter to files .properties-->
+            <h:outputFormat value="#{msg.userLogged}">
+                <f:param value="#{loginBean.student.name}"/>
+                <f:param value="#{loginBean.student.surname}"/>
+            </h:outputFormat>
+            <br/>
+            <h:outputFormat value="#{msg.alert}">
+                <f:param value="#{loginBean.qntdMessages}"/>
+            </h:outputFormat>
+            <h:commandButton value="Logout" action="#{loginBean.logout}"/>
+        </h:form>
+    </h:body>
+</f:view>
+
+</html>

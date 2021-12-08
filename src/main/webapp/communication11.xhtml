@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<h:body>
+    <o:form includeRequestParams="true">
+        <h:panelGrid columns="2">
+            <p:repeat value="#{communicationTest11Bean.students}" var="student">
+                <h:outputText value="#{student.name}"/>
+                <h:commandLink value="Update" action="#{communicationTest11Bean.update(student)}"/>
+                <br/>
+            </p:repeat>
+        </h:panelGrid>
+    </o:form>
+</h:body>
+
+</html>

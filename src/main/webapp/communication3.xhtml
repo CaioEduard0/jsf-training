@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+    <title>JSF-training</title>
+    <f:metadata>
+<!--        here we are setting the parameters that coming of communication1 view automatically-->
+        <f:viewParam name="name" value="#{communicationTest3Bean.name}"/>
+        <f:viewParam name="surname" value="#{communicationTest3Bean.surname}"/>
+<!--        we are receiving a date by the other view as string, and we are converting to date again with a conversor-->
+        <f:viewParam name="date" value="#{communicationTest3Bean.date}">
+            <f:convertDateTime pattern="dd/MM/yyyy"/>
+        </f:viewParam>
+<!--        that event is executed before the view is created, and the method called in that case was init,-->
+<!--        therefore, we can remove the @PostConstruct annotation-->
+<!--        <f:event type="preRenderView" listener="#{communicationTest3Bean.init}"></f:event>-->
+<!--        that method validate automatically if the request is ajax or not-->
+        <o:viewAction action="#{communicationTest3Bean.init}"/>
+    </f:metadata>
+</h:head>
+
+<h:body>
+    <o:form includeRequestParams="true">
+        <p:messages autoUpdate="true"/>
+        <h:panelGrid columns="1">
+            <h:inputText value="#{communicationTest3Bean.name}" required="true"
+            requiredMessage="Fill in the name.">
+                <f:ajax event="blur"/>
+            </h:inputText>
+            <h:inputText value="#{communicationTest3Bean.surname}"/>
+            <h:outputLabel value="#{communicationTest3Bean.date}"/>
+            <h:commandButton value="Result" action="result?faces-redirect=true&amp;includeViewParams=true"/>
+            <h:commandButton value="Result" action="#{communicationTest3Bean.save}"/>
+        </h:panelGrid>
+    </o:form>
+</h:body>
+
+</html>

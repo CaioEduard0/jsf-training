@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<h:body>
+    <o:form includeRequestParams="true">
+        <p:messages autoUpdate="true"/>
+        <h:panelGrid columns="1">
+            <h:commandButton actionListener="#{communicationTest4Bean.execute}">
+                <f:attribute value="#{communicationTest4Bean.buttonName}" name="value"/>
+            </h:commandButton>
+            <h:commandButton actionListener="#{communicationTest4Bean.execute}"
+                value="#{communicationTest4Bean.buttonName}"/>
+            <h:commandButton test="Testing" value="Add param" actionListener="#{communicationTest4Bean.execute}">
+<!--                we are sending this params to the bean-->
+                <f:attribute name="name" value="DevDojo"/>
+                <f:attribute name="adjective" value="Monster"/>
+                <f:attribute name="student" value="#{communicationTest4Bean.student}"/>
+            </h:commandButton>
+        </h:panelGrid>
+    </o:form>
+</h:body>
+
+</html>

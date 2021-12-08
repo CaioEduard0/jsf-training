@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                                  http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    
+    <flow-definition id="registration">
+        <flow-return id="exitToInit">
+            <from-outcome>/initflow.xhtml</from-outcome>
+        </flow-return>
+        <flow-return id="exitToIndex">
+            <from-outcome>/index.xhtml</from-outcome>
+        </flow-return>
+<!--        it will be executed when the flow scoped its finished-->
+        <finalizer>#{testFlowBean.save}</finalizer>
+<!--        that change the init page and set a different name, if you want-->
+        <start-node>registrationInit</start-node>
+        <view id="registrationInit">
+            <vdl-document>/registration/registration1.xhtml</vdl-document>
+        </view>
+<!--        that is a validation of fields in the flow scoped configuration file-->
+        <switch id="registrationPage2">
+            <case>
+                <if>#{not empty testFlowBean.name and not empty testFlowBean.surname}</if>
+                <from-outcome>registration2</from-outcome>
+            </case>
+<!--            that represent the else in that case (default method of a switch)-->
+            <default-outcome>registrationInit</default-outcome>
+        </switch>
+<!--        that send that parameters to another flow scoped-->
+        <flow-call id="callPendencies">
+            <flow-reference>
+                <flow-id>pendencies</flow-id>
+            </flow-reference>
+            <outbound-parameter>
+                <name>username</name>
+                <value>#{testFlowBean.name}</value>
+            </outbound-parameter>
+            <outbound-parameter>
+                <name>userSurname</name>
+                <value>#{testFlowBean.surname}</value>
+            </outbound-parameter>
+        </flow-call>
+    </flow-definition>
+</faces-config>

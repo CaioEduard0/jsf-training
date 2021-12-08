@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>JSF-training</title>
+    <f:metadata>
+<!--        here we are setting the parameters that coming of communication1 view automatically-->
+        <f:viewParam name="name" value="#{communicationTest3Bean.name}"/>
+        <f:viewParam name="surname" value="#{communicationTest3Bean.surname}"/>
+<!--        that event is executed before the view is created, and the method called in that case was init,-->
+<!--        therefore, we can remove the @PostConstruct annotation-->
+        <f:event type="preRenderView" listener="#{communicationTest3Bean.init}"></f:event>
+    </f:metadata>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:panelGrid columns="1">
+            <h:outputLabel value="#{communicationTest3Bean.name}"/>
+            <h:outputLabel value="#{communicationTest3Bean.surname}"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+
+</html>

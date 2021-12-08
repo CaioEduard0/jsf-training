@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caioe
+  Date: 21/11/2021
+  Time: 16:42
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>JSF-training</title>
+</h:head>
+
+<h:body>
+    <o:form includeRequestParams="true">
+        <p:messages autoUpdate="true"/>
+        <h:panelGrid columns="1">
+<!--            is very useful to passwords-->
+            <h:inputSecret required="true" value="#{communicationTest10Bean.password}"
+                requiredMessage="Fill in the password!"/>
+            <h:commandButton value="Put cookies" actionListener="#{communicationTest10Bean.save}"/>
+        </h:panelGrid>
+        <h:panelGrid columns="2">
+            <p:repeat value="#{communicationTest10Bean.students}" var="student">
+                <h:outputText value="#{student.name}"/>
+<!--                access the method in the bean-->
+                <h:commandLink value="Delete" actionListener="#{communicationTest10Bean.delete(student)}"
+                    immediate="true"/>
+<!--                to don't validate the required fields in the form we can move that button to other form,-->
+<!--                but the "immediate=true" do it for us in the same form, it ignore any validation in the -->
+<!--                form and execute the method present in him -->
+                <br/>
+            </p:repeat>
+        </h:panelGrid>
+    </o:form>
+</h:body>
+
+</html>
